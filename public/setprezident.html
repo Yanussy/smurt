@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form onsubmit="handleSubmit(event)">
+      <label for="input-text">pishi prezident:</label>
+      <input type="text" id="input-text" name="input-text" />
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      function handleSubmit(event) {
+        event.preventDefault();
+        const inputText = document.getElementById("input-text").value;
+        console.log(inputText);
+        fetch("http://localhost:3000/setprezident/" + inputText, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+            body: JSON.stringify({ text: inputText }),
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            //let something = res.something ;
+          });
+      }
+    </script>
+  </body>
+</html>
